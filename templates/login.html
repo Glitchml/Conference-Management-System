@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Conference Management System</title>
+    <link rel="stylesheet" href="..\static\style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="auth-container">
+        <div class="auth-card">
+            <h2>Welcome Back</h2>
+            <p class="auth-subtitle">Sign in to your account</p>
+            
+            <form class="auth-form" id="loginForm">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="password-input">
+                        <input type="password" id="password" name="password" required>
+                        <i class="fas fa-eye-slash toggle-password"></i>
+                    </div>
+                </div>
+                
+                <div class="form-options">
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="remember">
+                        <span class="checkmark"></span>
+                        Remember me
+                    </label>
+                    <a href="forgot-password.html" class="forgot-link">Forgot password?</a>
+                </div>
+                
+                <button type="submit" class="auth-button">Sign In</button>
+            </form>
+            
+            <p class="auth-footer">
+                Don't have an account? <a href="signup.html">Sign up</a>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Mock data structure for backend reference
+        const mockAuthData = {
+            auth: {
+                tokens: {
+                    access: "eyJhbGciOiJIUzI1NiIs...",
+                    refresh: "eyJhbGciOiJIUzI1NiIs..."
+                },
+                user: {
+                    id: "usr_123",
+                    email: "john@example.com",
+                    name: "John Doe",
+                    role: "attendee"
+                }
+            }
+        };
+
+        /* Required Backend APIs:
+         * POST   /api/auth/login - Login with credentials
+         * POST   /api/auth/refresh - Refresh access token
+         * POST   /api/auth/logout - Logout user
+         * GET    /api/auth/me - Get current user
+         * POST   /api/auth/2fa/verify - Verify 2FA code
+         */
+
+        // @TODO: Backend Integration Points
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                // @TODO: Replace with actual API call
+                // const response = await fetch('/api/auth/login', ...);
+                
+                // Store tokens in secure storage
+                // localStorage.setItem('accessToken', tokens.access);
+                // localStorage.setItem('refreshToken', tokens.refresh);
+                
+                window.location.href = 'dashboard.html';
+            } catch (error) {
+                console.error('Login failed:', error);
+                // @TODO: Show error message to user
+            }
+        });
+
+        // Token refresh handler
+        async function refreshToken() {
+            try {
+                // @TODO: Replace with actual API call
+                // const response = await fetch('/api/auth/refresh', ...);
+                // Update stored tokens
+            } catch (error) {
+                // Handle token refresh failure
+                window.location.href = 'login.html';
+            }
+        }
+    </script>
+</body>
+</html>
